@@ -1,0 +1,21 @@
+flipkartPage = uClient.read()
+#We are getting the searched page HTML content in text format we cant navigate through tag in HTML
+flipkart_html = bs(flipkartPage, "html.parser")
+#bs allias of beautiful soup converting the string into HTML Tag format to navigate through it/ beautify your data
+
+bigboxes = flipkart_html.findAll("div", {"class": "bhgxx2 col-12-12"})
+#we are selecting whole division for the every product
+
+del bigboxes[0:3]
+first 3 values dosent contain any information
+
+productLink = "https://www.flipkart.com" + box.div.div.div.a['href']
+we are selecting the link for the item
+
+prodRes = requests.get(productLink)
+#getting the data from the product
+prod_html = bs(prodRes.text, "html.parser")
+beautifying the data
+commentboxes = prod_html.find_all('div', {'class': "_3nrCtb"})
+selecting the revie division
+
